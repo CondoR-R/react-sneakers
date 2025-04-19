@@ -1,0 +1,54 @@
+.btn {
+  &:hover {
+    background-color: #88b84c;
+    .btnMargin {
+      img {
+        transform: translateX(0.5em);
+      }
+    }
+  }
+  &:active {
+    background-color: #70983e;
+  }
+
+  cursor: pointer;
+  padding: 1.29em;
+  border: none;
+  background-color: #9dd558;
+  border-radius: 1.29em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  transition: all 0.3s;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btnMargin {
+    flex: 1;
+    img {
+      transition: transform 0.3s;
+      width: 1em;
+      height: 0.86em;
+    }
+  }
+  .btnText {
+    font-weight: 600;
+    flex: 3;
+    font-size: 1.14em;
+  }
+}
+
+.leftArrow {
+  &:hover {
+    .btnMargin {
+      img {
+        transform: translateX(-0.5em);
+      }
+    }
+  }
+}

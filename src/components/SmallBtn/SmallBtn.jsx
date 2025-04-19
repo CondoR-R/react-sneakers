@@ -1,13 +1,18 @@
 import style from "./SmallBtn.module.scss";
 
-function SmallBtn({ children, btnClass = "", parentClass = "" }) {
+function SmallBtn({
+  children,
+  isFavorite = false,
+  isAdded = false,
+  positionClass = "",
+  onClick = () => {},
+}) {
+  const classes = `${style.smallBtn} ${isFavorite ? style.likeBtn : ""} ${
+    isAdded ? style.addedBtn : ""
+  } ${positionClass}`;
+
   return (
-    <button
-      className={`${style.smallBtn} ${btnClass
-        .split(" ")
-        .map((c) => `style.${c}`)
-        .join(" ")} ${parentClass}`}
-    >
+    <button onClick={onClick} className={classes}>
       {children}
     </button>
   );

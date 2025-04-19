@@ -1,0 +1,24 @@
+.cartItem {
+  position: relative;
+  border: 1px solid #f3f3f3;
+  border-radius: 1.43em;
+  padding: 1.43em;
+  margin-bottom: 1.43em;
+  gap: 1.43em;
+
+  .sneakersImg {
+    width: 5em;
+    height: 5em;
+    transform: translateY(-0.5em);
+  }
+
+  div {
+    width: 60%;
+  }
+
+  .btnPosition {
+    position: absolute;
+    bottom: 1.43em;
+    right: 1.43em;
+  }
+}

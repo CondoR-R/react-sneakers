@@ -1,0 +1,38 @@
+// шапка
+.header {
+  .headerLeft {
+    cursor: pointer;
+    img {
+      margin-right: 1.14em;
+      width: 2.86em;
+      height: 2.86em;
+    }
+
+    .headerInfo {
+      user-select: none;
+      h2 {
+        font-size: 1.43rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .headerRight {
+    :not(:last-of-type) {
+      margin-right: 2.29em;
+    }
+
+    li {
+      cursor: pointer;
+      user-select: none;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 1.29em;
+        margin-right: 0.71em;
+      }
+    }
+  }
+}

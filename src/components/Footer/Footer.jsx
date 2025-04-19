@@ -1,7 +1,12 @@
+import style from "./Footer.module.scss";
+
 function Footer() {
   return (
-    <footer className="footer pad">
-      <p>Используемые технологии: Sass, React, JSX, </p>
+    <footer className={`${style.footer} pad`}>
+      <p>
+        Используемые технологии: Sass, React, JSX, CSS modules, хуки (useState,
+        useEffect, useContext),
+      </p>
     </footer>
   );
 }

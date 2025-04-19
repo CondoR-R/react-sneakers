@@ -1,0 +1,50 @@
+// карточка
+.card {
+  width: 15em;
+  border: 1px solid #f3f3f3;
+  border-radius: 2.86em;
+  padding: 1.43em 2.15em 2.42em;
+  transition: all 0.3s;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-0.5em);
+    border: 1px solid #fff;
+    box-shadow: 0 5px 10px #eaeaea;
+  }
+
+  .likePosition {
+    position: absolute;
+  }
+
+  .sneakerImg,
+  .cardMiddle {
+    margin-bottom: 14px;
+  }
+
+  .sneakerImg {
+    width: 9.5em;
+    height: 8em;
+  }
+
+  .cardMiddle {
+    height: 4em;
+    overflow: hidden;
+  }
+
+  .cardBottom {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        text-transform: uppercase;
+        font-size: 0.85em;
+        color: #bdbdbd;
+      }
+    }
+  }
+}
