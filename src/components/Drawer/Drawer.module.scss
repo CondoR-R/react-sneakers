@@ -24,6 +24,14 @@
   justify-content: space-between;
   gap: 1.43em;
 
+  @media (max-width: 425px) {
+    width: 40em;
+  }
+
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+
   h2 {
     font-size: 1.71rem;
   }

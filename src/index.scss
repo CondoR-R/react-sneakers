@@ -8,8 +8,13 @@
 }
 
 :root,
-button {
+button,
+input {
   font-size: calc(0.2em + 1vw);
+
+  @media (max-width: 375px) {
+    font-size: calc(0.4em + 1vw);
+  }
 }
 
 body {
@@ -23,6 +28,10 @@ body {
   min-height: 100vh;
   main {
     flex: 1;
+
+    @media (max-width: 375px) {
+      padding: 2.5em;
+    }
   }
 }
 
@@ -30,41 +39,4 @@ body {
 .horisontalLine {
   width: 100%;
   border-top: 1px solid #eaeaea;
-}
-
-// контент (кроссовки)
-.content {
-  .contentHeader {
-    margin-bottom: 2.14em;
-  }
-
-  .contentBody {
-    display: grid;
-    grid-template-columns: repeat(4, 15em);
-    grid-template-rows: auto;
-    grid-auto-rows: auto;
-    gap: calc((100vw - 3.22em * 2 - 4 * 15em) / 3);
-  }
-}
-
-.searchBlock {
-  width: 17.86em;
-  border: 1px solid #f3f3f3;
-  border-radius: 0.71em;
-  padding: 1.07em 1.29em;
-
-  label {
-    margin-right: 1em;
-    cursor: pointer;
-  }
-  img {
-    width: 1.02em;
-    height: 1.02em;
-  }
-
-  input {
-    border: none;
-    outline: none;
-    width: 100%;
-  }
 }

@@ -2,24 +2,33 @@ import style from "./Card.module.scss";
 
 import SmallBtn from "../SmallBtn/SmallBtn";
 
-import { useState } from "react";
+import { useContext } from "react";
+import { SneakersContext } from "../../App";
 
-function Card({ title, price, img }) {
-  const [isAdded, setIsAdded] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+function Card({ title, price, img, id }) {
+  const {
+    onClickAddToCart,
+    onClickRemoveFromCart,
+    onClickAddToFavorite,
+    onClickRemoveFromFavorite,
+    cartItems,
+  } = useContext(SneakersContext);
 
-  const onClickLike = () => {
-    setIsFavorite(true);
-  };
+  const isAddedToCart = cartItems.some(({ itemId }) => itemId === id);
+  // const isFavorite = favoriteItems.some(({ itemId }) => itemId === id);
+  const isFavorite = false;
 
-  const onClickAddToCart = () => {
-    setIsAdded(true);
+  const addToCartData = {
+    name: title,
+    price,
+    img,
+    itemId: id,
   };
 
   return (
     <div className={style.card}>
       <SmallBtn
-        onClick={onClickLike}
+        onClick={isFavorite ? onClickRemoveFromFavorite : onClickAddToFavorite}
         isFavorite={isFavorite}
         positionClass={style.likePosition}
       >
@@ -54,8 +63,15 @@ function Card({ title, price, img }) {
           <span>Цена:</span>
           <b>{price} руб.</b>
         </div>
-        <SmallBtn isAdded={isAdded} onClick={onClickAddToCart}>
-          {isAdded ? (
+        <SmallBtn
+          isAdded={isAddedToCart}
+          onClick={
+            isAddedToCart
+              ? onClickRemoveFromCart(id)
+              : onClickAddToCart(addToCartData)
+          }
+        >
+          {isAddedToCart ? (
             <img width={11} height={11} src="img/added.svg" alt="added" />
           ) : (
             <img width={11} height={11} src="img/add.svg" alt="add" />

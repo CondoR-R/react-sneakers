@@ -7,6 +7,10 @@
   transition: all 0.3s;
   position: relative;
 
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+
   &:hover {
     transform: translateY(-0.5em);
     border: 1px solid #fff;

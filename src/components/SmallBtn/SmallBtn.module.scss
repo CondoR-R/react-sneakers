@@ -19,6 +19,15 @@
   align-items: center;
 
   cursor: pointer;
+
+  img {
+    width: 0.79em;
+    height: 0.79em;
+  }
+  svg {
+    width: 1.14em;
+    height: 1.14em;
+  }
 }
 
 .likeBtn {
@@ -70,4 +79,15 @@
 
   background-color: #9dd558;
   border: #9dd558;
+}
+
+.moreSmallBtn {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 0.3em;
+
+  img {
+    width: 0.5em;
+    height: 0.5em;
+  }
 }
