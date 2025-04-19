@@ -1,0 +1,73 @@
+.smallBtn {
+  &:hover {
+    background-color: #f2f2f2;
+  }
+  &:active {
+    background-color: #dadada;
+  }
+
+  transition: all 0.3s;
+
+  width: 2.29em;
+  height: 2.29em;
+  border: 1px solid #f2f2f2;
+  background-color: #fff;
+  border-radius: 0.57em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.likeBtn {
+  background-color: #fef0f0;
+  border: #fef0f0;
+
+  svg {
+    fill: #ff8585;
+    path {
+      stroke: #ff8585;
+    }
+  }
+
+  &:hover {
+    background-color: #fbd6d6;
+    border: #fbd6d6;
+
+    svg {
+      fill: #ff6c6c;
+      path {
+        stroke: #ff6c6c;
+      }
+    }
+  }
+  &:active {
+    background-color: #fdc2c2;
+    border: #fdc2c2;
+
+    svg {
+      fill: #d95b5b;
+      path {
+        stroke: #d95b5b;
+      }
+    }
+  }
+}
+
+.addedBtn {
+  &:hover {
+    background-color: #88b84c;
+    border: #88b84c;
+    color: #fafafa;
+  }
+  &:active {
+    background-color: #70983e;
+    border: #70983e;
+    color: #e6e6e6;
+  }
+
+  background-color: #9dd558;
+  border: #9dd558;
+}
