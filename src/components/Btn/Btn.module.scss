@@ -1,6 +1,6 @@
 .btn {
   &:hover {
-    background-color: #88b84c;
+    background-color: var(--color-green);
     .btnMargin {
       img {
         transform: translateX(0.5em);
@@ -8,15 +8,15 @@
     }
   }
   &:active {
-    background-color: #70983e;
+    background-color: var(--color-dark-green);
   }
 
   cursor: pointer;
   padding: 1.29em;
   border: none;
-  background-color: #9dd558;
+  background-color: var(--color-light-green);
   border-radius: 1.29em;
-  color: #fff;
+  color: var(--color-white);
   display: flex;
   align-items: center;
   gap: 1em;

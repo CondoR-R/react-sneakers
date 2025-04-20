@@ -1,17 +1,22 @@
+@mixin light-pink {
+  background-color: var(--color-light-pink);
+  border: var(--color-light-pink);
+}
+
 .smallBtn {
   &:hover {
-    background-color: #f2f2f2;
+    background-color: var(--color-light-gray);
   }
   &:active {
-    background-color: #dadada;
+    background-color: var(--color-dark-gray);
   }
 
   transition: all 0.3s;
 
   width: 2.29em;
   height: 2.29em;
-  border: 1px solid #f2f2f2;
-  background-color: #fff;
+  border: 1px solid var(--color-light-gray);
+  background-color: var(--color-white);
   border-radius: 0.57em;
 
   display: flex;
@@ -31,54 +36,40 @@
 }
 
 .likeBtn {
-  background-color: #fef0f0;
-  border: #fef0f0;
+  @include light-pink;
+  opacity: 0.5;
 
   svg {
-    fill: #ff8585;
+    fill: var(--color-dark-pink);
+
     path {
-      stroke: #ff8585;
+      stroke: var(--color-dark-pink);
     }
   }
 
   &:hover {
-    background-color: #fbd6d6;
-    border: #fbd6d6;
-
-    svg {
-      fill: #ff6c6c;
-      path {
-        stroke: #ff6c6c;
-      }
-    }
+    @include light-pink;
+    opacity: 0.75;
   }
-  &:active {
-    background-color: #fdc2c2;
-    border: #fdc2c2;
 
-    svg {
-      fill: #d95b5b;
-      path {
-        stroke: #d95b5b;
-      }
-    }
+  &:active {
+    @include light-pink;
+    opacity: 1;
   }
 }
 
 .addedBtn {
   &:hover {
-    background-color: #88b84c;
-    border: #88b84c;
-    color: #fafafa;
+    background-color: var(--color-green);
+    border: var(--color-green);
   }
   &:active {
-    background-color: #70983e;
-    border: #70983e;
-    color: #e6e6e6;
+    background-color: var(--color-dark-green);
+    border: var(--color-dark-green);
   }
 
-  background-color: #9dd558;
-  border: #9dd558;
+  background-color: var(--color-light-green);
+  border: var(--color-light-green);
 }
 
 .moreSmallBtn {
