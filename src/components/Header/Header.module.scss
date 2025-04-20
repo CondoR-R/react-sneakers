@@ -4,8 +4,12 @@
     justify-content: flex-start;
     align-items: center;
     gap: 2em;
-    padding: 2.5em;
+    padding: 2em;
   }
+
+  background-color: #fff;
+  border-top-left-radius: 1.4em;
+  border-top-right-radius: 1.4em;
 
   .headerLeft {
     cursor: pointer;

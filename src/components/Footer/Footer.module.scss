@@ -9,4 +9,12 @@
     margin: 0 auto;
     text-align: center;
   }
+
+  @media (max-width: 375px) {
+    padding: 2em;
+
+    p {
+      width: 100%;
+    }
+  }
 }
