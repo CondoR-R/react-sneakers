@@ -50,13 +50,13 @@ function PurchasesPage() {
             <ContentLoader
               className={style.orderLoading}
               speed={2}
-              width={300}
+              width={250}
               height={35}
-              viewBox="0 0 300 35"
+              viewBox="0 0 250 35"
               backgroundColor="#f3f3f3"
               foregroundColor="#ecebeb"
             >
-              <rect x="0" y="0" rx="5" ry="5" width="300" height="35" />
+              <rect x="0" y="0" rx="5" ry="5" width="250" height="35" />
             </ContentLoader>
             <div className={style.orders}>
               {renderCards(isLoading, [], "", true)}

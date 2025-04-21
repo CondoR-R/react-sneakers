@@ -26,7 +26,6 @@ function Provider() {
   const [isCartOpened, setIsCartOpened] = useState(false);
   const [isLoadingCards, setIsLoadingCards] = useState(true);
   const [isArranged, setIsArranged] = useState(false);
-  const [isInProcess, setIsInProcess] = useState(false);
 
   // Вычисляемые значения
   const totalPrice = cartItems.reduce((acc, { price }) => acc + price, 0);
@@ -95,7 +94,6 @@ function Provider() {
 
   const onClickArrange = () => {
     setIsArranged(true);
-    setIsInProcess(true);
     try {
       (async () => {
         const items = [...cartItems].map(({ name, img, price, itemId }) => ({
@@ -116,8 +114,6 @@ function Provider() {
       })();
     } catch {
       alert("Не удалось создать заказ!");
-    } finally {
-      setIsInProcess(false);
     }
   };
 
@@ -151,7 +147,6 @@ function Provider() {
     isLoadingCards,
     isArranged,
     totalPrice,
-    isInProcess,
     arrangedId,
     emojiIndex,
     onClickAddToCart,

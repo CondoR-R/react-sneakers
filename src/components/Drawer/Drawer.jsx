@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { SneakersContext } from "../../pages/Provider/Provider";
 
@@ -17,8 +17,19 @@ function Drawer({ isOppened }) {
     onClickArrange,
     isArranged,
     arrangedId,
-    isInProcess,
   } = useContext(SneakersContext);
+
+  const [isInProcess, setIsInProcess] = useState(false);
+
+  const onClickArrangeBtn = () => {
+    setIsInProcess(true);
+    onClickArrange();
+  };
+
+  const onClickCloseCartBtn = () => {
+    setIsInProcess(false);
+    onClickCloseCart();
+  };
 
   const renderEmptyCart = () => {
     return (
@@ -50,7 +61,7 @@ function Drawer({ isOppened }) {
               ? `Ваш заказ #${arrangedId} скоро будет передан курьерской доставке`
               : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
           }
-          onClick={onClickCloseCart}
+          onClick={onClickCloseCartBtn}
         />
       </div>
     );
@@ -78,7 +89,7 @@ function Drawer({ isOppened }) {
             </li>
           </ul>
           <Btn
-            onClick={onClickArrange}
+            onClick={onClickArrangeBtn}
             isInProcess={isInProcess}
             positionClass={style.totalBtn}
             text="Оформить заказ"
@@ -94,7 +105,7 @@ function Drawer({ isOppened }) {
   return (
     <div
       className={`${style.overlay} ${isOppened ? style.overlayVisible : ""}`}
-      onClick={onClickCloseCart}
+      onClick={onClickCloseCartBtn}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -102,7 +113,7 @@ function Drawer({ isOppened }) {
       >
         <div className="flex a-items-center j-cont-sb">
           <h2>Корзина</h2>
-          <SmallBtn onClick={onClickCloseCart}>
+          <SmallBtn onClick={onClickCloseCartBtn}>
             <img width={14} height={12} src="img/remove.svg" alt="Закрыть" />
           </SmallBtn>
         </div>
