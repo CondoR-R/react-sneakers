@@ -1,7 +1,4 @@
-import { createContext, useState } from "react";
-
-import useGetData from "../../customHooks/useGetData";
-
+import { createContext, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,6 +7,7 @@ import URL from "../../URL";
 import Drawer from "../../components/Drawer/Drawer";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import HorizontalLine from "../../components/HorizontalLine/HorizontalLine";
 
 import style from "./Provider.module.scss";
 
@@ -22,18 +20,28 @@ function Provider() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
+  const [arrangedId, setArrangedId] = useState(null);
+  const [emojiIndex, setEmojiIndex] = useState(Math.floor(Math.random() * 9));
 
   const [isCartOpened, setIsCartOpened] = useState(false);
+  const [isLoadingCards, setIsLoadingCards] = useState(true);
+  const [isArranged, setIsArranged] = useState(false);
+  const [isInProcess, setIsInProcess] = useState(false);
 
   // Вычисляемые значения
   const totalPrice = cartItems.reduce((acc, { price }) => acc + price, 0);
 
   // Обработка событий
+  const setRandomEmojieIndex = () => {
+    setEmojiIndex(Math.floor(Math.random() * 9));
+  };
+
   const onClickAddToCart = (newItem) => () => {
     try {
-      axios
-        .post(`${URL}/cart`, newItem)
-        .then((res) => setCartItems((prev) => [...prev, res.data]));
+      (async () => {
+        const res = await axios.post(`${URL}/cart`, newItem);
+        setCartItems((prev) => [...prev, res.data]);
+      })();
     } catch (error) {
       console.log(error.message);
     }
@@ -43,25 +51,29 @@ function Provider() {
     try {
       axios.delete(`${URL}/cart/${id}`);
     } catch (error) {
-      console.log(error.message);
+      alert("Не удалось добавить в корзину");
     }
 
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onAddToFavorite = (newItem) => {
+  const onClickAddToFavorite = (newItem) => () => {
     try {
-      axios
-        .post(`${URL}/favorite`, newItem)
-        .then((res) => setFavoriteItems((prev) => [...prev, res.data]));
+      (async () => {
+        const res = await axios.post(`${URL}/favorite`, newItem);
+        setFavoriteItems((prev) => [...prev, res.data]);
+      })();
     } catch (error) {
       alert("Не удалось добавить в избранное");
     }
   };
 
-  const onRemoveFromFavorite = (id) => {
+  const onClickRemoveFromFavorite = (id) => () => {
     try {
-      axios.delete(`${URL}/favorite/${id}`);
+      (async () => {
+        axios.delete(`${URL}/favorite/${id}`);
+        setFavoriteItems((prev) => prev.filter((item) => item.id !== id));
+      })();
     } catch (error) {
       alert("Произошла ошибка :(");
     }
@@ -73,16 +85,62 @@ function Provider() {
 
   const onClickCloseCart = () => {
     setIsCartOpened(false);
+    setIsArranged(false);
   };
 
   const goBack = () => {
+    setRandomEmojieIndex();
     navigate(-1);
   };
 
+  const onClickArrange = () => {
+    setIsArranged(true);
+    setIsInProcess(true);
+    try {
+      (async () => {
+        const items = [...cartItems].map(({ name, img, price, itemId }) => ({
+          name,
+          img,
+          price,
+          id: itemId,
+        }));
+
+        const res = await axios.post(`${URL}/orders`, {
+          items,
+          date: new Date(),
+        });
+        setArrangedId(res.data.id);
+
+        cartItems.forEach((item) => axios.delete(`${URL}/cart/${item.id}`));
+        setCartItems((_) => []);
+      })();
+    } catch {
+      alert("Не удалось создать заказ!");
+    } finally {
+      setIsInProcess(false);
+    }
+  };
+
   // запросы к серверу при инициализации приложения
-  useGetData("/items", setItems);
-  useGetData("/cart", setCartItems);
-  useGetData("/favorite", setFavoriteItems);
+  useEffect(() => {
+    (async () => {
+      try {
+        const [cartResponse, favoriteResponse, itemsResponse] =
+          await Promise.all([
+            axios.get(`${URL}/cart`),
+            axios.get(`${URL}/favorite`),
+            axios.get(`${URL}/items`),
+          ]);
+
+        setCartItems(cartResponse.data);
+        setFavoriteItems(favoriteResponse.data);
+        setItems(itemsResponse.data);
+        setIsLoadingCards(false);
+      } catch (error) {
+        alert("Ошибка при загрузке страницы :(");
+      }
+    })();
+  }, []);
 
   // контекст
   const contextValue = {
@@ -90,23 +148,32 @@ function Provider() {
     cartItems,
     favoriteItems,
     isCartOpened,
+    isLoadingCards,
+    isArranged,
     totalPrice,
+    isInProcess,
+    arrangedId,
+    emojiIndex,
     onClickAddToCart,
     onClickRemoveFromCart,
-    onAddToFavorite,
-    onRemoveFromFavorite,
+    onClickAddToFavorite,
+    onClickRemoveFromFavorite,
     onClickShowCart,
     onClickCloseCart,
     goBack,
+    onClickArrange,
+    setRandomEmojieIndex,
   };
 
   return (
     <SneakersContext.Provider value={contextValue}>
       <div className={style.app}>
-        {isCartOpened && <Drawer />}
+        <div>
+          <Drawer isOppened={isCartOpened} />
+        </div>
         <div className={style.wrapper}>
           <Header />
-          <div className={style.horisontalLine}></div>
+          <HorizontalLine />
           <main className={`${style.main} pad`}>
             <Outlet />
           </main>

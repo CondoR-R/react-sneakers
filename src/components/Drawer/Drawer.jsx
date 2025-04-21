@@ -1,44 +1,57 @@
 import { useContext } from "react";
+
+import { SneakersContext } from "../../pages/Provider/Provider";
+
 import Btn from "../Btn/Btn";
 import CartItem from "../CartItem/CartItem";
 import SmallBtn from "../SmallBtn/SmallBtn";
-import style from "./Drawer.module.scss";
-import { SneakersContext } from "../../pages/Provider/Provider";
+import Info from "../Info/Info";
 
-function Drawer() {
-  const { onClickCloseCart, cartItems, totalPrice } =
-    useContext(SneakersContext);
+import style from "./Drawer.module.scss";
+
+function Drawer({ isOppened }) {
+  const {
+    onClickCloseCart,
+    cartItems,
+    totalPrice,
+    onClickArrange,
+    isArranged,
+    arrangedId,
+    isInProcess,
+  } = useContext(SneakersContext);
 
   const renderEmptyCart = () => {
     return (
-      <div className={`${style.emptyCartBox} flex a-items-center`}>
-        <div>
-          <img
-            className={style.img}
-            width={120}
-            height={120}
-            src="/img/emptyCart.svg"
-            alt="Корзина пуста"
-          />
-          <p>Корзина пустая</p>
-          <span className={style.span}>
-            Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
-          </span>
-          <Btn
-            onClick={onClickCloseCart}
-            positionClass={style.btnPosition}
-            isLeftArrow
-            marginImg={
+      <div className={style.emptyCartBox}>
+        <Info
+          spanContent={
+            isArranged ? (
               <img
-                src="/img/leftArrow.svg"
-                width={14}
-                height={12}
-                alt="Назад"
+                className={style.imgList}
+                width={83}
+                height={120}
+                src="/img/arranged.svg"
+                alt="Заказ оформлен"
               />
-            }
-            text="Вернуться назад"
-          />
-        </div>
+            ) : (
+              <img
+                className={style.imgBox}
+                width={120}
+                height={120}
+                src="/img/emptyCart.svg"
+                alt="Корзина пуста"
+              />
+            )
+          }
+          title={isArranged ? "Заказ оформлен!" : "Корзина пустая"}
+          titleGreen
+          text={
+            isArranged
+              ? `Ваш заказ #${arrangedId} скоро будет передан курьерской доставке`
+              : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+          }
+          onClick={onClickCloseCart}
+        />
       </div>
     );
   };
@@ -65,6 +78,8 @@ function Drawer() {
             </li>
           </ul>
           <Btn
+            onClick={onClickArrange}
+            isInProcess={isInProcess}
             positionClass={style.totalBtn}
             text="Оформить заказ"
             marginImg={
@@ -77,8 +92,14 @@ function Drawer() {
   };
 
   return (
-    <div className={style.overlay}>
-      <div className={style.drawer}>
+    <div
+      className={`${style.overlay} ${isOppened ? style.overlayVisible : ""}`}
+      onClick={onClickCloseCart}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`${style.drawer} ${isOppened ? style.drawerVisible : ""}`}
+      >
         <div className="flex a-items-center j-cont-sb">
           <h2>Корзина</h2>
           <SmallBtn onClick={onClickCloseCart}>

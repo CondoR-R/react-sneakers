@@ -6,13 +6,16 @@ function Btn({
   marginImg = "",
   isLeftArrow = false,
   onClick = () => {},
+  isInProcess = false,
+  isRed = false,
 }) {
+  console.log(isInProcess);
   return (
     <button
       onClick={onClick}
       className={`${style.btn} ${positionClass} ${
         isLeftArrow ? style.leftArrow : ""
-      }`}
+      } ${isInProcess ? style.inProcess : ""} ${isRed ? style.redBtn : ""}`}
     >
       <span className={style.btnMargin}>{isLeftArrow && marginImg}</span>
       <span className={style.btnText}>{text}</span>

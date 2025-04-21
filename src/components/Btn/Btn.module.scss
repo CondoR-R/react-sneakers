@@ -51,3 +51,29 @@
     }
   }
 }
+
+.inProcess,
+.inProcess:hover {
+  background-color: var(--color-light-gray);
+  pointer-events: none;
+  .btnMargin {
+    img {
+      transform: none;
+    }
+  }
+}
+
+.redBtn {
+  background: rgb(231, 82, 82);
+  padding: 0.6em 1em;
+
+  border-radius: 0.8em;
+
+  &:hover {
+    background: rgb(227, 65, 65);
+  }
+
+  &:active {
+    background: rgb(223, 52, 52);
+  }
+}

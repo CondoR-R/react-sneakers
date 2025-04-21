@@ -1,0 +1,20 @@
+@import "../../sass/mixins";
+
+.orderBox {
+  margin: 3.22em 0;
+
+  .orderTitle {
+    margin-bottom: 1em;
+    span {
+      color: var(--color-dark-gray);
+    }
+  }
+}
+
+.orders {
+  @include gridCards;
+}
+
+.orderLoading {
+  margin-bottom: 2em;
+}

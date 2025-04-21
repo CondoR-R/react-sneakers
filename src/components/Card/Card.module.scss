@@ -1,26 +1,12 @@
-// карточка
 .card {
   width: 100%;
   border: 1px solid var(--color-light-gray);
   border-radius: 2.86em;
   padding: 1.43em 2.15em 2.42em;
-  transition: all 0.3s;
   position: relative;
 
   @media (max-width: 375px) {
     width: 100%;
-  }
-
-  &:hover {
-    transform: translateY(-0.5em);
-    border: 1px solid var(--color-white);
-    box-shadow: 0 5px 10px var(--color-gray);
-
-    @media (max-width: 375px) {
-      transform: none;
-      border: 1px solid var(--color-light-gray);
-      box-shadow: none;
-    }
   }
 
   .likePosition {
@@ -55,6 +41,26 @@
         font-size: 0.85em;
         color: var(--color-dark-gray);
       }
+    }
+  }
+
+  .emptyCartWidth {
+    width: 100%;
+  }
+}
+
+.animation {
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-0.5em);
+    border: 1px solid var(--color-white);
+    box-shadow: 0 5px 10px var(--color-gray);
+
+    @media (max-width: 375px) {
+      transform: none;
+      border: 1px solid var(--color-light-gray);
+      box-shadow: none;
     }
   }
 }

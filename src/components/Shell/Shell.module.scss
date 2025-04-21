@@ -3,9 +3,18 @@
 .shell {
   .header {
     display: flex;
-    align-items: center;
-    gap: 1.42em;
     margin-bottom: 2.86em;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 1.42em;
+    }
+
+    .right {
+      align-items: center;
+    }
 
     h1 {
       font-size: 2.29rem;

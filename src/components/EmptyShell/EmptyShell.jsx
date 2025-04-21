@@ -1,29 +1,23 @@
 import { useContext } from "react";
-import Btn from "../Btn/Btn";
 
-import style from "./EmptyShell.module.scss";
 import { SneakersContext } from "../../pages/Provider/Provider";
 
+import Info from "../Info/Info";
+
+import style from "./EmptyShell.module.scss";
+
 function EmptyShell({ title, text }) {
-  const { goBack } = useContext(SneakersContext);
+  const { goBack, emojiIndex } = useContext(SneakersContext);
 
   const emoji = ["🥺", "🥲", "😞", "😔", "😕", "☹️", "😫", "😩", "😢"];
 
-  const emojiIndex = Math.floor(Math.random() * 9);
-
   return (
     <div className={style.emptyShell}>
-      <span className={style.span}>{emoji[emojiIndex]}</span>
-      <h1 className={style.title}>{title}</h1>
-      <p className={style.text}>{text}</p>
-      <Btn
+      <Info
+        title={title}
+        text={text}
+        spanContent={emoji[emojiIndex]}
         onClick={goBack}
-        positionClass={style.btn}
-        isLeftArrow
-        marginImg={
-          <img src="/img/leftArrow.svg" width={14} height={12} alt="Назад" />
-        }
-        text="Вернуться назад"
       />
     </div>
   );

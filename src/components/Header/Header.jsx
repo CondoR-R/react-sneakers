@@ -1,10 +1,13 @@
 import { useContext } from "react";
-import style from "./Header.module.scss";
-import { SneakersContext } from "../../pages/Provider/Provider";
 import { NavLink } from "react-router-dom";
 
+import { SneakersContext } from "../../pages/Provider/Provider";
+
+import style from "./Header.module.scss";
+
 function Header() {
-  const { onClickShowCart, totalPrice } = useContext(SneakersContext);
+  const { onClickShowCart, totalPrice, setRandomEmojieIndex } =
+    useContext(SneakersContext);
 
   return (
     <header className={`${style.header} pad flex j-cont-sb`}>
@@ -23,7 +26,11 @@ function Header() {
           </button>
         </li>
         <li>
-          <NavLink to="/favorite" className={style.link}>
+          <NavLink
+            to="/favorite"
+            onClick={setRandomEmojieIndex}
+            className={style.link}
+          >
             <img
               width={18}
               height={18}
@@ -34,7 +41,11 @@ function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/" className={style.link}>
+          <NavLink
+            onClick={setRandomEmojieIndex}
+            to="/my-purchases"
+            className={style.link}
+          >
             <img width={18} height={18} src="img/profile.svg" alt="Профиль" />
             <span>Профиль</span>
           </NavLink>

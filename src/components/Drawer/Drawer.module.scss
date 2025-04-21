@@ -7,6 +7,11 @@
   height: 100%;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
 }
 
 .drawer {
@@ -23,6 +28,9 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 1.43em;
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
 
   @media (max-width: 425px) {
     width: 40em;
@@ -72,31 +80,22 @@
 .emptyCartBox {
   flex: 1;
   padding: 0 1.43em;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  div {
-    text-align: center;
+  .imgBox {
+    width: 1.714em;
+    height: 1.714em;
   }
+}
 
-  .img {
-    width: 8.57em;
-    height: 8.57em;
-    margin-bottom: 1.43em;
-  }
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+}
 
-  p {
-    font-size: 1.57rem;
-    font-weight: 600;
-    margin-bottom: 0.45em;
-  }
-
-  .span {
-    display: inline-block;
-    font-size: 1.14rem;
-    margin-bottom: 2.5em;
-    color: var(--color-dark-gray);
-  }
-
-  .btnPosition {
-    width: 100%;
-  }
+.drawerVisible {
+  transform: translateX(0);
 }

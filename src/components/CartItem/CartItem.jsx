@@ -1,8 +1,10 @@
-import style from "./CartItem.module.scss";
+import { useContext } from "react";
+
+import { SneakersContext } from "../../pages/Provider/Provider";
 
 import SmallBtn from "../SmallBtn/SmallBtn";
-import { useContext } from "react";
-import { SneakersContext } from "../../pages/Provider/Provider";
+
+import style from "./CartItem.module.scss";
 
 function CartItem({ title, price, img, id }) {
   const { onClickRemoveFromCart } = useContext(SneakersContext);

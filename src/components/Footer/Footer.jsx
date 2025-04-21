@@ -5,7 +5,7 @@ function Footer() {
     <footer className={`${style.footer} pad`}>
       <p>
         Используемые технологии: Sass, React, JSX, CSS modules, хуки (useState,
-        useEffect, useContext), Context API, React Router, axios
+        useEffect, useContext), Context API, React Router, axios, React Skeleton
       </p>
     </footer>
   );
