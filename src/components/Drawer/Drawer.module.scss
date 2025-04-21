@@ -68,3 +68,35 @@
     width: 100%;
   }
 }
+
+.emptyCartBox {
+  flex: 1;
+  padding: 0 1.43em;
+
+  div {
+    text-align: center;
+  }
+
+  .img {
+    width: 8.57em;
+    height: 8.57em;
+    margin-bottom: 1.43em;
+  }
+
+  p {
+    font-size: 1.57rem;
+    font-weight: 600;
+    margin-bottom: 0.45em;
+  }
+
+  .span {
+    display: inline-block;
+    font-size: 1.14rem;
+    margin-bottom: 2.5em;
+    color: var(--color-dark-gray);
+  }
+
+  .btnPosition {
+    width: 100%;
+  }
+}

@@ -1,0 +1,18 @@
+@import "../../sass/mixins";
+
+.shell {
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1.42em;
+    margin-bottom: 2.86em;
+
+    h1 {
+      font-size: 2.29rem;
+    }
+  }
+
+  .body {
+    @include gridCards;
+  }
+}

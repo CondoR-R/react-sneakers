@@ -2,9 +2,9 @@ import style from "./CartItem.module.scss";
 
 import SmallBtn from "../SmallBtn/SmallBtn";
 import { useContext } from "react";
-import { SneakersContext } from "../../App";
+import { SneakersContext } from "../../pages/Provider/Provider";
 
-function CartItem({ title, price, img, itemId }) {
+function CartItem({ title, price, img, id }) {
   const { onClickRemoveFromCart } = useContext(SneakersContext);
 
   return (
@@ -21,7 +21,7 @@ function CartItem({ title, price, img, itemId }) {
         <b>{price} руб.</b>
       </div>
       <SmallBtn
-        onClick={onClickRemoveFromCart(itemId)}
+        onClick={onClickRemoveFromCart(id)}
         positionClass={style.btnPosition}
       >
         <img src="img/remove.svg" alt="Убрать" />

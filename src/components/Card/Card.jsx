@@ -3,7 +3,8 @@ import style from "./Card.module.scss";
 import SmallBtn from "../SmallBtn/SmallBtn";
 
 import { useContext } from "react";
-import { SneakersContext } from "../../App";
+import { SneakersContext } from "../../pages/Provider/Provider";
+import getItemInfo from "../../functions/getItemInfo";
 
 function Card({ title, price, img, id }) {
   const {
@@ -12,13 +13,13 @@ function Card({ title, price, img, id }) {
     onClickAddToFavorite,
     onClickRemoveFromFavorite,
     cartItems,
+    favoriteItems,
   } = useContext(SneakersContext);
 
-  const isAddedToCart = cartItems.some(({ itemId }) => itemId === id);
-  // const isFavorite = favoriteItems.some(({ itemId }) => itemId === id);
-  const isFavorite = false;
+  const [isAddedToCart, cartId] = getItemInfo(cartItems, id);
+  const [isFavorite, favoriteId] = getItemInfo(favoriteItems, id);
 
-  const addToCartData = {
+  const newItem = {
     name: title,
     price,
     img,
@@ -28,7 +29,11 @@ function Card({ title, price, img, id }) {
   return (
     <div className={style.card}>
       <SmallBtn
-        onClick={isFavorite ? onClickRemoveFromFavorite : onClickAddToFavorite}
+        onClick={
+          isFavorite
+            ? onClickRemoveFromFavorite(favoriteId)
+            : onClickAddToFavorite(newItem)
+        }
         isFavorite={isFavorite}
         positionClass={style.likePosition}
       >
@@ -67,8 +72,8 @@ function Card({ title, price, img, id }) {
           isAdded={isAddedToCart}
           onClick={
             isAddedToCart
-              ? onClickRemoveFromCart(id)
-              : onClickAddToCart(addToCartData)
+              ? onClickRemoveFromCart(cartId)
+              : onClickAddToCart(newItem)
           }
         >
           {isAddedToCart ? (

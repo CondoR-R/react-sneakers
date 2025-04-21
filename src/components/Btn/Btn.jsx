@@ -5,16 +5,18 @@ function Btn({
   text = "",
   marginImg = "",
   isLeftArrow = false,
+  onClick = () => {},
 }) {
   return (
     <button
+      onClick={onClick}
       className={`${style.btn} ${positionClass} ${
         isLeftArrow ? style.leftArrow : ""
       }`}
     >
-      <span className={style.btnMargin}></span>
+      <span className={style.btnMargin}>{isLeftArrow && marginImg}</span>
       <span className={style.btnText}>{text}</span>
-      <span className={style.btnMargin}>{marginImg}</span>
+      <span className={style.btnMargin}>{!isLeftArrow && marginImg}</span>
     </button>
   );
 }

@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 
-import { SneakersContext } from "../../App";
+import { SneakersContext } from "../Provider/Provider";
 
-import Card from "../Card/Card";
-import SmallBtn from "../SmallBtn/SmallBtn";
+import style from "./MainPage.module.scss";
+import SmallBtn from "../../components/SmallBtn/SmallBtn";
+import Card from "../../components/Card/Card";
 
-import style from "./ContentBox.module.scss";
-
-function ContentBox() {
+function MainPage() {
   const { items } = useContext(SneakersContext);
 
   const [search, setSearch] = useState("");
@@ -68,4 +67,4 @@ function ContentBox() {
   );
 }
 
-export default ContentBox;
+export default MainPage;
