@@ -36,7 +36,7 @@ function Header() {
         <li>
           <NavLink to="/" className={style.link}>
             <img width={18} height={18} src="img/profile.svg" alt="Профиль" />
-            <span>Покупки</span>
+            <span>Профиль</span>
           </NavLink>
         </li>
       </ul>

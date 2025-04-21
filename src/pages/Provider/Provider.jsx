@@ -24,6 +24,7 @@ function Provider() {
   const [favoriteItems, setFavoriteItems] = useState([]);
 
   const [isCartOpened, setIsCartOpened] = useState(false);
+
   // Вычисляемые значения
   const totalPrice = cartItems.reduce((acc, { price }) => acc + price, 0);
 
@@ -48,24 +49,22 @@ function Provider() {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const onClickAddToFavorite = (newItem) => () => {
+  const onAddToFavorite = (newItem) => {
     try {
       axios
         .post(`${URL}/favorite`, newItem)
         .then((res) => setFavoriteItems((prev) => [...prev, res.data]));
     } catch (error) {
-      console.log(error.message);
+      alert("Не удалось добавить в избранное");
     }
   };
 
-  const onClickRemoveFromFavorite = (id) => () => {
+  const onRemoveFromFavorite = (id) => {
     try {
       axios.delete(`${URL}/favorite/${id}`);
     } catch (error) {
-      console.log(error.message);
+      alert("Произошла ошибка :(");
     }
-
-    setFavoriteItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   const onClickShowCart = () => {
@@ -94,8 +93,8 @@ function Provider() {
     totalPrice,
     onClickAddToCart,
     onClickRemoveFromCart,
-    onClickAddToFavorite,
-    onClickRemoveFromFavorite,
+    onAddToFavorite,
+    onRemoveFromFavorite,
     onClickShowCart,
     onClickCloseCart,
     goBack,

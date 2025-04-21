@@ -29,7 +29,7 @@ button,
 input {
   font-size: calc(0.2em + 1vw);
 
-  @media (max-width: 375px) {
+  @media (max-width: 425px) {
     font-size: calc(0.4em + 1vw);
   }
 }

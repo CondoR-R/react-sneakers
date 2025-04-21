@@ -7,9 +7,13 @@ import { SneakersContext } from "../../pages/Provider/Provider";
 function EmptyShell({ title, text }) {
   const { goBack } = useContext(SneakersContext);
 
+  const emoji = ["🥺", "🥲", "😞", "😔", "😕", "☹️", "😫", "😩", "😢"];
+
+  const emojiIndex = Math.floor(Math.random() * 9);
+
   return (
     <div className={style.emptyShell}>
-      <span className={style.span}>🥺</span>
+      <span className={style.span}>{emoji[emojiIndex]}</span>
       <h1 className={style.title}>{title}</h1>
       <p className={style.text}>{text}</p>
       <Btn

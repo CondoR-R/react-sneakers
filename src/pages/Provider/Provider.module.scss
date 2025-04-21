@@ -8,6 +8,7 @@
     background-color: var(--color-white);
     border-bottom-left-radius: 1.4em;
     border-bottom-right-radius: 1.4em;
+    display: flex;
 
     @media (max-width: 375px) {
       padding: 1em;
