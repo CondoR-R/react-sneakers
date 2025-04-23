@@ -12,7 +12,7 @@ function Header() {
   return (
     <header className={`${style.header} pad flex j-cont-sb`}>
       <NavLink className={`${style.headerLeft} flex a-items-center`}>
-        <img width={40} height={40} src="/img/logo.svg" alt="Логотип" />
+        <img width={40} height={40} src="./img/logo.svg" alt="Логотип" />
         <div className={style.headerInfo}>
           <h2>REACT SNEAKERS</h2>
           <p>Магазин лучших кроссовок</p>

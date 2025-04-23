@@ -6,18 +6,23 @@ import MainPage from "./pages/MainPage/MainPage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import OrdersPage from "./pages/OrdersPage/OrdersPage";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Provider />,
+      children: [
+        { index: true, element: <MainPage /> },
+        { path: "favorite", element: <FavoritePage /> },
+        { path: "my-purchases", element: <OrdersPage /> },
+        { path: "*", element: <MainPage /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <Provider />,
-    children: [
-      { index: true, element: <MainPage /> },
-      { path: "/favorite", element: <FavoritePage /> },
-      { path: "/my-purchases", element: <OrdersPage /> },
-      { path: "*", element: <MainPage /> },
-    ],
-  },
-]);
+    basename: "/react-sneakers",
+  }
+);
 
 function App() {
   return <RouterProvider router={router} />;

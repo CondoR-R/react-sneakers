@@ -41,7 +41,7 @@ function Drawer({ isOppened }) {
                 className={style.imgList}
                 width={83}
                 height={120}
-                src="/img/arranged.svg"
+                src="./img/arranged.svg"
                 alt="Заказ оформлен"
               />
             ) : (
@@ -49,7 +49,7 @@ function Drawer({ isOppened }) {
                 className={style.imgBox}
                 width={120}
                 height={120}
-                src="/img/emptyCart.svg"
+                src="./img/emptyCart.svg"
                 alt="Корзина пуста"
               />
             )

@@ -43,5 +43,6 @@
   },
   "devDependencies": {
     "sass": "^1.86.3"
-  }
+  },
+  "homepage": "https://condor-r.github.io/react-sneakers/"
 }
