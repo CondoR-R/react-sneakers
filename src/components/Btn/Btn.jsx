@@ -9,7 +9,6 @@ function Btn({
   isInProcess = false,
   isRed = false,
 }) {
-  console.log(isInProcess);
   return (
     <button
       onClick={onClick}

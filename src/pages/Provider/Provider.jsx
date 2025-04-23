@@ -38,8 +38,8 @@ function Provider() {
   const onClickAddToCart = (newItem) => () => {
     try {
       (async () => {
-        const res = await axios.post(`${URL}/cart`, newItem);
-        setCartItems((prev) => [...prev, res.data]);
+        // const res = await axios.post(`${URL}/cart`, newItem);
+        setCartItems((prev) => [...prev, /* res.data */ newItem]);
       })();
     } catch (error) {
       console.log(error.message);
@@ -48,7 +48,7 @@ function Provider() {
 
   const onClickRemoveFromCart = (id) => () => {
     try {
-      axios.delete(`${URL}/cart/${id}`);
+      // axios.delete(`${URL}/cart/${id}`);
     } catch (error) {
       alert("Не удалось добавить в корзину");
     }
@@ -59,8 +59,8 @@ function Provider() {
   const onClickAddToFavorite = (newItem) => () => {
     try {
       (async () => {
-        const res = await axios.post(`${URL}/favorite`, newItem);
-        setFavoriteItems((prev) => [...prev, res.data]);
+        // const res = await axios.post(`${URL}/favorite`, newItem);
+        setFavoriteItems((prev) => [...prev, /*res.data*/ newItem]);
       })();
     } catch (error) {
       alert("Не удалось добавить в избранное");
@@ -70,7 +70,7 @@ function Provider() {
   const onClickRemoveFromFavorite = (id) => () => {
     try {
       (async () => {
-        axios.delete(`${URL}/favorite/${id}`);
+        // axios.delete(`${URL}/favorite/${id}`);
         setFavoriteItems((prev) => prev.filter((item) => item.id !== id));
       })();
     } catch (error) {
@@ -109,7 +109,7 @@ function Provider() {
         });
         setArrangedId(res.data.id);
 
-        cartItems.forEach((item) => axios.delete(`${URL}/cart/${item.id}`));
+        // cartItems.forEach((item) => axios.delete(`${URL}/cart/${item.id}`));
         setCartItems((_) => []);
       })();
     } catch {
@@ -121,15 +121,16 @@ function Provider() {
   useEffect(() => {
     (async () => {
       try {
-        const [cartResponse, favoriteResponse, itemsResponse] =
-          await Promise.all([
-            axios.get(`${URL}/cart`),
-            axios.get(`${URL}/favorite`),
-            axios.get(`${URL}/items`),
-          ]);
+        const itemsResponse = await axios.get(`${URL}/items`);
+        // const [cartResponse, favoriteResponse, itemsResponse] =
+        //   await Promise.all([
+        //     axios.get(`${URL}/cart`),
+        //     axios.get(`${URL}/favorite`),
+        //     axios.get(`${URL}/items`),
+        //   ]);
 
-        setCartItems(cartResponse.data);
-        setFavoriteItems(favoriteResponse.data);
+        // setCartItems(cartResponse.data);
+        // setFavoriteItems(favoriteResponse.data);
         setItems(itemsResponse.data);
         setIsLoadingCards(false);
       } catch (error) {

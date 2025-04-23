@@ -12,7 +12,7 @@ function FavoritePage() {
 
   return isLoadingCards || favoriteItems.length ? (
     <Shell title={"Мое избранное"}>
-      {renderCards(isLoadingCards, favoriteItems, "itemId")}
+      {renderCards(isLoadingCards, favoriteItems, /* "itemId" */ "id")}
     </Shell>
   ) : (
     <EmptyShell

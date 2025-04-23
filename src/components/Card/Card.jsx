@@ -44,7 +44,7 @@ function Card({
     name: title,
     price,
     img,
-    itemId: id,
+    /* itemId: */ id,
   };
 
   // const onClickFavorite = (favoriteId, newItem) => () => {
@@ -53,6 +53,8 @@ function Card({
 
   //   // setIsFavorite((prev) => !prev);
   // };
+
+  console.log(favoriteItems, id);
 
   const renderCard = () => {
     return (
